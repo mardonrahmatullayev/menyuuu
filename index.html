@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Restoran menyusi</title>
+<style>
+:root{--bg:#fff4e0;--card:#fff;--ink:#2b1a12;--mute:#7d6557;--line:#f3dfc4;--acc:#e4472b;--nav:#2b1a12;--navink:#fff4e0;--c:#e4472b;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#1d130e;--card:#2a1c14;--ink:#fff0dc;--mute:#c2a893;--line:#443023;--acc:#ff6a4a;--nav:#120a06;--navink:#fff0dc;--c:#ff6a4a}}
+:root[data-theme="dark"]{--bg:#1d130e;--card:#2a1c14;--ink:#fff0dc;--mute:#c2a893;--line:#443023;--acc:#ff6a4a;--nav:#120a06;--navink:#fff0dc;--c:#ff6a4a}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{background:var(--bg);color:var(--ink);font-family:"Manrope",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+.wrap{max-width:560px;margin:0 auto;padding:0 16px 40px}
+header{margin:0 -16px;padding:calc(36px + env(safe-area-inset-top,0px)) 24px 34px;background:linear-gradient(135deg,#e4472b 0%,#f2891f 55%,#f7c23a 100%);color:#fff;border-radius:0 0 28px 28px}
+h1{margin:0 0 8px;font-size:34px;line-height:1.1;font-weight:800;letter-spacing:-.01em;text-shadow:0 2px 8px rgba(120,30,0,.35)}
+header p{margin:0;font-size:15px;font-weight:600;color:#fff8ea}
+nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);padding:12px 16px;margin:0 -16px;display:flex;gap:8px;overflow-x:auto}
+nav button{flex:none;border:2px solid var(--b,var(--line));background:var(--card);color:var(--ink);font:inherit;font-size:15px;font-weight:700;padding:9px 15px;border-radius:999px;cursor:pointer}
+nav button[aria-pressed="true"]{background:var(--b,var(--acc));color:#fff}
+nav button:focus-visible{outline:3px solid var(--ink);outline-offset:2px}
+h2{font-size:21px;margin:26px 4px 12px;font-weight:800;display:flex;align-items:center;gap:10px}
+h2 span{width:38px;height:38px;border-radius:12px;background:var(--c);display:grid;place-items:center;font-size:20px}
+.list{background:var(--card);border:1px solid var(--line);border-left:5px solid var(--c);border-radius:16px;box-shadow:0 6px 18px rgba(120,60,10,.1)}
+.item{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:15px 16px}
+.item+.item{border-top:1px dashed var(--line)}
+.em{flex:none;width:46px;height:46px;border-radius:50%;background:color-mix(in srgb,var(--c) 16%,transparent);display:grid;place-items:center;font-size:24px}
+.tx{flex:1;min-width:0}
+.item b{display:block;font-size:16px;font-weight:800;margin-bottom:3px}
+.item small{color:var(--mute);font-size:14px;line-height:1.4;display:block}
+.price{flex:none;font-weight:800;font-size:15px;white-space:nowrap;background:var(--c);color:#fff;padding:7px 12px;border-radius:999px}
+.price i{font-style:normal;font-weight:600;font-size:11px;margin-left:3px;opacity:.9}
+footer{margin-top:28px;padding:18px;border-radius:16px;background:var(--nav);color:var(--navink);font-size:15px;line-height:1.6}
+footer a{color:var(--acc);font-weight:700;text-decoration:none}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <h1>Restoran nomi</h1>
+  <p>Milliy va Yevropa taomlari. Har kuni 10:00 – 23:00</p>
+</header>
+<nav id="tabs" aria-label="Bo'limlar"></nav>
+<div id="menu"></div>
+<footer>
+  Stol band qilish: <a href="tel:+998900000000">+998 90 000 00 00</a><br>
+  Manzil: Toshkent, ko'cha nomi, uy raqami
+</footer>
+</div>
+<script>
+var DATA=[
+{n:"Birinchi taomlar",e:"🍲",c:"#d93b25",i:[["Sho'rva","Qo'y go'shti, kartoshka, sabzi, yangi ko'katlar",32000,"🍲"],["Lag'mon","Qo'lda cho'zilgan xamir, mol go'shti, sabzavotlar",38000,"🍜"],["Mastava","Guruch, go'sht va sabzavotli quyuq sho'rva",30000,"🥣"]]},
+{n:"Asosiy taomlar",e:"🍛",c:"#c85a0a",i:[["Osh (palov)","Devzira guruchi, mol go'shti, no'xat, sarimsoq",45000,"🍛"],["Shashlik","Qo'y go'shti, ko'mirda pishirilgan, piyoz bilan",18000,"🍢"],["Manti","Go'shtli bug'da pishirilgan, 4 dona",36000,"🥟"],["Dimlama","Go'sht va sabzavotlar o'z sharbatida",48000,"🥘"]]},
+{n:"Salatlar",e:"🥗",c:"#2f8f3a",i:[["Achichuk","Pomidor, piyoz, chili",16000,"🍅"],["Sezar","Tovuq, salat bargi, parmezan, krutonlar",34000,"🥗"],["Yunon salati","Bodring, pomidor, feta, zaytun",30000,"🥒"]]},
+{n:"Ichimliklar",e:"🍹",c:"#1f6fb5",i:[["Ko'k choy","Choynak",12000,"🍵"],["Kompot","Uy sharoitida, 1 l",22000,"🍒"],["Limonad","Limon va yalpiz, 0.5 l",20000,"🍋"],["Coca-Cola","0.5 l",10000,"🥤"]]},
+{n:"Shirinliklar",e:"🍰",c:"#c73d7a",i:[["Medovik","Asalli tort, bir bo'lak",26000,"🍰"],["Chak-chak","Uy sharoitida tayyorlangan",22000,"🍯"]]}
+];
+var cur=0,tabs=document.getElementById("tabs"),menu=document.getElementById("menu");
+function fmt(n){return String(n).replace(/\B(?=(\d{3})+(?!\d))/g," ")}
+function render(){
+  tabs.innerHTML="";
+  var all=document.createElement("button");all.textContent="Hammasi";all.setAttribute("aria-pressed",cur===-1);all.onclick=function(){cur=-1;render()};tabs.appendChild(all);
+  DATA.forEach(function(c,k){var b=document.createElement("button");b.textContent=c.e+" "+c.n;b.style.setProperty("--b",c.c);b.setAttribute("aria-pressed",cur===k);b.onclick=function(){cur=k;render()};tabs.appendChild(b)});
+  menu.innerHTML="";
+  DATA.forEach(function(c,k){
+    if(cur!==-1&&cur!==k)return;
+    var h=document.createElement("h2"),hs=document.createElement("span");hs.textContent=c.e;h.appendChild(hs);h.appendChild(document.createTextNode(c.n));h.style.setProperty("--c",c.c);menu.appendChild(h);
+    var l=document.createElement("div");l.className="list";l.style.setProperty("--c",c.c);
+    c.i.forEach(function(x){var d=document.createElement("div");d.className="item";
+      var em=document.createElement("div");em.className="em";em.textContent=x[3];
+      var t=document.createElement("div"),b=document.createElement("b"),s=document.createElement("small");t.className="tx";
+      b.textContent=x[0];s.textContent=x[1];t.appendChild(b);t.appendChild(s);
+      var p=document.createElement("div");p.className="price";p.textContent=fmt(x[2]);var u=document.createElement("i");u.textContent="so'm";p.appendChild(u);
+      d.appendChild(em);d.appendChild(t);d.appendChild(p);l.appendChild(d)});
+    menu.appendChild(l);
+  });
+}
+cur=-1;render();
+</script>
+</body>
+</html>
